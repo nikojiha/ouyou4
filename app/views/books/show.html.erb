@@ -51,7 +51,9 @@
                <% @book.book_comments.each do |book_comment| %>
               <%= image_tag book_comment.user.get_profile_image, size:"50x50" %>
               <%= book_comment.comment %>
-              <%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+              <% if book_comment.user == current_user%>
+                <%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+              <% end %>
               <p><%= link_to book_comment.user.name, users_path %></p>
               <% end %>
             </div>
